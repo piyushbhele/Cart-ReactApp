@@ -25,9 +25,10 @@ class CartItem extends React.Component {
             return {
                 qty: prevState.qty + 1
             }
+        }, () => {
+            console.log(this.state.qty)
         })
 
-        console.log(this.state.qty);
     }
 
     decreaseQuantiy = () => {
@@ -36,15 +37,16 @@ class CartItem extends React.Component {
                 return {
                     qty: prevState.qty - 1
                 }
+            }, () => {
+                console.log(this.state.qty)
             })
         }
         // this.setState({
         //     qty: this.state.qty - 1
         // })
-        console.log(this.state.qty);
     }
     render() {
-        const { price, title, qty } = this.state;
+        const { price, title, qty } = this.props.product;
         return (
             <div className="cart-item">
                 <div className="left-block">
