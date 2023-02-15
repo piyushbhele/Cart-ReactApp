@@ -1,52 +1,7 @@
 import React from 'react';
 
 const CartItem = (props) => {
-    // class CartItem extends React.Component {
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //         price: 999,
-    //         title: 'Mobile Phone',
-    //         qty: 1,
-    //         img: ''
-    //     }
 
-    //     // this.increaseQuantiy = this.increaseQuantiy.bind(this);
-    // }
-
-    // increaseQuantiy = () => {
-    //     //state form 1
-    //     // this.setState({
-    //     //     qty: this.state.qty + 1
-    //     // })
-
-    //     //state 2 -- if previous state require
-
-    //     this.setState((prevState) => {
-    //         return {
-    //             qty: prevState.qty + 1
-    //         }
-    //     }, () => {
-    //         console.log(this.state.qty)
-    //     })
-
-    // }
-
-    // decreaseQuantiy = () => {
-    //     if (this.state.qty > 1) {
-    //         this.setState((prevState) => {
-    //             return {
-    //                 qty: prevState.qty - 1
-    //             }
-    //         }, () => {
-    //             console.log(this.state.qty)
-    //         })
-    //     }
-    //     // this.setState({
-    //     //     qty: this.state.qty - 1
-    //     // })
-    // }
-    // render() {
     const { price, title, qty } = props.product;
     const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct } = props
     return (
@@ -81,7 +36,7 @@ const CartItem = (props) => {
             </div>
         </div>
     );
-    // }
+
 }
 
 const styles = {
