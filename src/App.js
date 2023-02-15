@@ -10,23 +10,26 @@ class App extends React.Component {
       products: [{
         id: 1,
         price: 99,
-        title: 'Watch',
+        title: 'Royal Stag',
         qty: 1,
-        img: ''
+        img: 'https://file.bungki.com/eyJidWNrZXQiOiJidW5na2kiLCJrZXkiOiJwdWJsaWMv' +
+          'c3RhdGljcy9pbWFnZXMvcHJvZHVjdHMvMjA4MjYvYi8xNjU5MzM4OTg5Njk4LmpwZyIsImVka' +
+          'XRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb250YWluIiwid2lkdGgiOjEwMjQsImhlaWdodCI6MTA' +
+          'yNCwiYmFja2dyb3VuZCI6eyJyIjoyNTUsImciOjI1NSwiYiI6MjU1LCJhbHBoYSI6MX19fX0='
       },
       {
         id: 2,
         price: 999,
-        title: 'Mobile Phone',
+        title: 'Blenders Pride',
         qty: 1,
-        img: ''
+        img: "https://www.delhicapital.com/wp-content/uploads/2022/10/Blenders-Pride-Price-in-Delhi-1024x666.jpg"
       },
       {
         id: 3,
         price: 9999,
-        title: 'Laptop',
+        title: 'Teachers',
         qty: 1,
-        img: ''
+        img: 'https://cdn3.mydukaan.io/app/image/2000x2000/?url=https://mydukaan-prod-new.s3.amazonaws.com/214913/55ca609f-685b-4b07-a0de-c30a73d64500.png'
       }
       ]
     }
