@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Navbar = (props) => {
-    const { products } = props;
+    // const { products } = props;
     return (
 
         <div style={styles.nav}>

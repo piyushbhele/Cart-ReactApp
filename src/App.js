@@ -1,38 +1,97 @@
 import React from "react";
 import Cart from "./Cart";
 import Navbar from "./Navbar";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      products: [{
-        id: 1,
-        price: 740,
-        title: 'Royal Stag',
-        qty: 1,
-        img: 'https://file.bungki.com/eyJidWNrZXQiOiJidW5na2kiLCJrZXkiOiJwdWJsaWMv' +
-          'c3RhdGljcy9pbWFnZXMvcHJvZHVjdHMvMjA4MjYvYi8xNjU5MzM4OTg5Njk4LmpwZyIsImVka' +
-          'XRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb250YWluIiwid2lkdGgiOjEwMjQsImhlaWdodCI6MTA' +
-          'yNCwiYmFja2dyb3VuZCI6eyJyIjoyNTUsImciOjI1NSwiYiI6MjU1LCJhbHBoYSI6MX19fX0='
-      },
-      {
-        id: 2,
-        price: 1360,
-        title: 'Blenders Pride',
-        qty: 1,
-        img: "https://www.delhicapital.com/wp-content/uploads/2022/10/Blenders-Pride-Price-in-Delhi-1024x666.jpg"
-      },
-      {
-        id: 3,
-        price: 2320,
-        title: 'Teachers',
-        qty: 1,
-        img: 'https://cdn3.mydukaan.io/app/image/2000x2000/?url=https://mydukaan-prod-new.s3.amazonaws.com/214913/55ca609f-685b-4b07-a0de-c30a73d64500.png'
-      }
+      loading: true,
+      products: [
+        // {
+        //   id: 1,
+        //   price: 740,
+        //   title: 'Royal Stag',
+        //   qty: 1,
+        //   img: 'https://file.bungki.com/eyJidWNrZXQiOiJidW5na2kiLCJrZXkiOiJwdWJsaWMv' +
+        //     'c3RhdGljcy9pbWFnZXMvcHJvZHVjdHMvMjA4MjYvYi8xNjU5MzM4OTg5Njk4LmpwZyIsImVka' +
+        //     'XRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb250YWluIiwid2lkdGgiOjEwMjQsImhlaWdodCI6MTA' +
+        //     'yNCwiYmFja2dyb3VuZCI6eyJyIjoyNTUsImciOjI1NSwiYiI6MjU1LCJhbHBoYSI6MX19fX0='
+        // },
+        // {
+        //   id: 2,
+        //   price: 1360,
+        //   title: 'Blenders Pride',
+        //   qty: 1,
+        //   img: "https://www.delhicapital.com/wp-content/uploads/2022/10/Blenders-Pride-Price-in-Delhi-1024x666.jpg"
+        // },
+        // {
+        //   id: 3,
+        //   price: 2320,
+        //   title: 'Teachers',
+        //   qty: 1,
+        //   img: 'https://cdn3.mydukaan.io/app/image/2000x2000/?url=https://mydukaan-prod-new.s3.amazonaws.com/214913/55ca609f-685b-4b07-a0de-c30a73d64500.png'
+        // }
       ]
     }
+
+  }
+
+  // componentDidMount() {
+  //   firebase
+  //     .firestore()
+  //     .collection('products')
+  //     .get()
+  //     .then((snapshot) => {
+  //       console.log(snapshot);
+
+  //       snapshot.docs.map((doc) => {
+  //         console.log(doc.data());
+  //       });
+
+  //       const products = snapshot.docs.map((doc) => {
+  //         const data = doc.data();
+  //         data['id'] = doc.id;
+  //         return data;
+  //       });
+
+  //       this.setState({
+  //         products: products,
+  //         loading: false
+  //       });
+
+
+  //     });
+
+  // }
+
+  componentDidMount() {
+    firebase
+      .firestore()
+      .collection('products')
+      .onSnapshot((snapshot) => {
+        console.log(snapshot);
+
+        snapshot.docs.map((doc) => {
+          console.log(doc.data());
+        });
+
+        const products = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          data['id'] = doc.id;
+          return data;
+        });
+
+        this.setState({
+          products: products,
+          loading: false
+        });
+
+
+      });
 
   }
 
@@ -99,7 +158,7 @@ class App extends React.Component {
 
 
   render() {
-    const { products } = this.state;
+    const { products, loading } = this.state;
     return (
       <div className="App" >
         <Navbar
@@ -112,6 +171,7 @@ class App extends React.Component {
           onDecreaseQuantity={this.handleDecreaseQuantity}
           onDeleteProduct={this.handleDeleteProduct}
         />
+        {loading && <h1>Loading</h1>}
         <div style={styles.total}>
           Total : {this.getCartTotal()}
         </div>
